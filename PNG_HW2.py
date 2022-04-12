@@ -73,7 +73,7 @@ def is_prime(n):
 class Node:
     def __init__(self, content): 
         self.content = content
-        self.content = next
+        self.next = next
 
 # Function to insert a node to the beginning of a linked list
 def push(head_ptr, new_content):
