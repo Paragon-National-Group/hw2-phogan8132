@@ -19,17 +19,33 @@
 #     iterative_palindrome(12) -> false
 #     iterative_palindrome(2468642) -> true
 def iterative_palindrome(n):
-    #TODO
-    return
+    length = len(str(n))
+    reversed = ''
+    for i in range(length):
+        reversed += str(n)[length - i - 1]
+    palindrome = False
+    if int(reversed) == n:
+        palindrome = True
+    return palindrome
 
 # This function is the same as iterative_palindrome() except instead of using a
 # loop, implement the function in a recursive way.
 # Ex) recursive_palindrome(1) -> true
 #     recursive_palindrome(12) -> false
 #     recursive_palindrome(2468642) -> true
+
 def recurisve_palindrome(n):
-    #TODO
-    return
+    if n >= 10 and n <= 99:
+        if n % 10 == n // 10:
+            return True
+        else:
+            return False
+    if n >= 0 and n < 10:
+        return True
+    length = len(str(n))
+    if (str(n))[0] != str(n)[length - 1]:
+        return False
+    return recurisve_palindrome(int(str(n)[1:length - 1]))
 
 # Helper function for sum_factorials(). Takes a number as an argument and returns
 # the factorial of that number.
@@ -37,8 +53,9 @@ def recurisve_palindrome(n):
 #     factorial(4) -> 24
 #     factorial(7) -> 5040
 def factorial(n):
-    #TODO
-    return
+    if n == 1:
+        return 1
+    return n * factorial(n - 1)
 
 # Helper function for sum_factorials(). Takes a number as an argument and returns
 # a boolean value of true or false that shows whether the inputted number is a 
@@ -47,8 +64,10 @@ def factorial(n):
 #     is_prime(12) -> false
 #     is_prime(23) -> true
 def is_prime(n):
-    #TODO
-    return
+    for i in range(2, n // 2):
+        if n % i == 0:
+            return False
+    return True
 
 # Function that creates a node to help testing of sum_factorials()
 class Node:
@@ -75,5 +94,9 @@ def push(head_ptr, new_content):
 #     lst = push(lst, 6)
 #     sum_factorials(lst) -> 128
 def sum_factorials(head_ptr):
-    #TODO
-    return
+    if head_ptr == None:
+        return 0
+    if is_prime(head_ptr.content):
+        return factorial(head_ptr.content) + sum_factorials(head_ptr.next)
+    return sum_factorials(head_ptr.next)
+
